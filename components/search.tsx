@@ -7,7 +7,12 @@ const SearchComponent = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/search?query=${query}`);
+      if (!query.trim()) {
+        setResults([]);
+        return;
+      }
+      console.log('here',results);
+      const response = await fetch(`/api/search?query=${query}`);
       const rawData = await response.json();
       const data = Array.isArray(rawData) ? rawData : [rawData];
 
@@ -38,7 +43,8 @@ const SearchComponent = () => {
         onChange={handleChange}
       />
 
-      <ul className={utilStyles.list}>
+{query.trim() ? (
+<ul className={utilStyles.list}>
         {results.map((result) => (
           <li className={utilStyles.listItem} key={result.imdbID}>
           <img src={result.Poster} alt={result.Title} width="300" height="300" />
@@ -48,17 +54,22 @@ const SearchComponent = () => {
           <h1 className={utilStyles.headingMd}>Genre: {result.Genre}</h1>
           <h1 className={utilStyles.headingMd}>Ratings: </h1>
 
-          <ul className={utilStyles.ratingList}>
-            {result.Ratings.map((rating) => (
-                <li className={utilStyles.listItem} key={rating.Source}>
-                    <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
-                </li>
-            ))}
-            <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
-          </ul>
+          <section className={utilStyles.rating}>
+            <ul className={utilStyles.ratingList}>
+                {result.Ratings.map((rating) => (
+                    <li className={utilStyles.listItem} key={rating.Source}>
+                        <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
+                    </li>
+                ))}
+                <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
+            </ul>
+          </section>
           </li>
         ))}
       </ul>
+      ) : (
+        <p></p>
+      )}
     </section>
   );
 };
