@@ -3,7 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { query } = req.query;
-    const response = await fetch(`http://www.omdbapi.com/?t=${query}&apikey=31d7e182`);
+    const apiKey = process.env.API_KEY;
+    const response = await fetch(`http://www.omdbapi.com/?t=${query}&apikey=${apiKey}`);
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

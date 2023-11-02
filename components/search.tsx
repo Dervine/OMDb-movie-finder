@@ -11,7 +11,6 @@ const SearchComponent = () => {
         setResults([]);
         return;
       }
-      console.log('here',results);
       const response = await fetch(`/api/search?query=${query}`);
       const rawData = await response.json();
       const data = Array.isArray(rawData) ? rawData : [rawData];
