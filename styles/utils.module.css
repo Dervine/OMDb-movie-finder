@@ -50,3 +50,22 @@
   .lightText {
     color: #666;
   }
+  .searchInput {
+    background-color: #B6E2D3;
+    border: none;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    width: 100%;
+    margin: 0 0 1.25rem;
+    cursor: pointer;
+  }
+  .ratingText
+  {
+    color: #FEEDAA;
+  }
+  .ratingList {
+    padding: 0;
+    margin: 0;
+  }
