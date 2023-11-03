@@ -54,9 +54,9 @@
     background-color: #B6E2D3;
     border: none;
     color: #666;
-    padding: 15px 30px;
+    padding: 1rem 0.1rem;
     text-decoration: none;
-    margin: 4px 2px;
+    margin: 2rem 1rem;
     width: 100%;
     margin: 0 0 1.25rem;
     cursor: pointer;
@@ -72,6 +72,6 @@
     margin: 0;
   }
   .ratingList {
-    font-size: 15px;
+    font-size: 0.9rem;
     color: #666;
   }

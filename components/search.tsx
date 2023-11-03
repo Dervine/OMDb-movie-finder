@@ -34,41 +34,41 @@ const SearchComponent = () => {
 
   return (
     <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-      <input
-        type="text"
-        placeholder="Type movie title to search"
-        className={utilStyles.searchInput}
-        value={query}
-        onChange={handleChange}
-      />
+        <input
+            type="text"
+            placeholder="Type movie title to search"
+            className={utilStyles.searchInput}
+            value={query}
+            onChange={handleChange}
+        />
 
-{query.trim() ? (
-<ul className={utilStyles.list}>
-        {results.map((result) => (
-          <li className={utilStyles.listItem} key={result.imdbID}>
-          <img src={result.Poster} alt={result.Title} width="300" height="300" />
-          <br />
-          <h1 className={utilStyles.headingLg}>Title: {result.Title}</h1>
-          <h1 className={utilStyles.headingMd}>Type: {result.Type}</h1>
-          <h1 className={utilStyles.headingMd}>Genre: {result.Genre}</h1>
-          <h1 className={utilStyles.headingMd}>Ratings: </h1>
+        {query.trim() ? (
+            <ul className={utilStyles.list}>
+                {results.map((result) => (
+                <li className={utilStyles.listItem} key={result.imdbID}>
+                <img src={result.Poster} alt={result.Title} width="300" height="300" />
+                <br />
+                <h1 className={utilStyles.headingLg}>Title: {result.Title}</h1>
+                <h1 className={utilStyles.headingMd}>Type: {result.Type}</h1>
+                <h1 className={utilStyles.headingMd}>Genre: {result.Genre}</h1>
+                <h1 className={utilStyles.headingMd}>Ratings: </h1>
 
-          <section className={utilStyles.rating}>
-            <ul className={utilStyles.ratingList}>
-                {result.Ratings.map((rating) => (
-                    <li className={utilStyles.listItem} key={rating.Source}>
-                        <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
-                    </li>
+                <section className={utilStyles.rating}>
+                    <ul className={utilStyles.ratingList}>
+                        {result.Ratings.map((rating) => (
+                            <li className={utilStyles.listItem} key={rating.Source}>
+                                <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
+                            </li>
+                        ))}
+                        <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
+                    </ul>
+                </section>
+                </li>
                 ))}
-                <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
             </ul>
-          </section>
-          </li>
-        ))}
-      </ul>
-      ) : (
-        <p></p>
-      )}
+            ) : (
+                <p></p>
+        )}
     </section>
   );
 };
