@@ -19,6 +19,9 @@ const SearchComponent = () => {
         return result.Title && result.Title.toLowerCase().includes(query.toLowerCase())
       });
 
+      if (matchingResults.length === 0) {
+        return <div>No results found</div>;
+      }
       setResults(matchingResults);
     } catch (error) {
       console.error('Error fetching data', error);
@@ -43,8 +46,9 @@ const SearchComponent = () => {
         />
 
         {query.trim() ? (
+        results.length > 0 ? (
             <ul className={utilStyles.list}>
-                {results.map((result) => (
+            {results.map((result) => (
                 <li className={utilStyles.listItem} key={result.imdbID}>
                 <img src={result.Poster} alt={result.Title} width="300" height="300" />
                 <br />
@@ -55,19 +59,22 @@ const SearchComponent = () => {
 
                 <section className={utilStyles.rating}>
                     <ul className={utilStyles.ratingList}>
-                        {result.Ratings.map((rating) => (
-                            <li className={utilStyles.listItem} key={rating.Source}>
-                                <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
-                            </li>
-                        ))}
-                        <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
+                    {result.Ratings.map((rating) => (
+                        <li className={utilStyles.listItem} key={rating.Source}>
+                        <h4 className={utilStyles.ratingText}>{rating.Source}({rating.Value})</h4>
+                        </li>
+                    ))}
+                    <li><h4 className={utilStyles.ratingText}>IMDB Rating({result.imdbRating})</h4></li>
                     </ul>
                 </section>
                 </li>
-                ))}
+            ))}
             </ul>
-            ) : (
-                <p></p>
+        ) : (
+            <p>No results found</p>
+        )
+        ) : (
+        <p></p>
         )}
     </section>
   );
