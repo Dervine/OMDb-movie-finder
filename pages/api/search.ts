@@ -4,7 +4,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { query } = req.query;
     const apiKey = process.env.API_KEY;
-    const response = await fetch(`http://www.omdbapi.com/?t=${query}&apikey=${apiKey}`);
+    const omdbAPI = process.env.OMDB_API;
+    const response = await fetch(`${omdbAPI}?t=${query}&apikey=${apiKey}`);
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }
