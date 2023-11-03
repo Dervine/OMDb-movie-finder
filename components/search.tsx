@@ -18,10 +18,7 @@ const SearchComponent = () => {
       const matchingResults = data.filter((result) => {
         return result.Title && result.Title.toLowerCase().includes(query.toLowerCase())
       });
-
-      if (matchingResults.length === 0) {
-        return <div>No results found</div>;
-      }
+      
       setResults(matchingResults);
     } catch (error) {
       console.error('Error fetching data', error);

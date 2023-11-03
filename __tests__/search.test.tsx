@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import Search from '../components/search'
 import '@testing-library/jest-dom'
 import { mockMovieData } from '../__mocks__/apiMock';
